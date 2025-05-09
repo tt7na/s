@@ -3,83 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>رفع ملف</title>
+  <title>رفع ملف جديد</title>
   <script src="https://cdn.tailwindcss.com "></script>
-  <style>
-    body { font-family: 'Tajawal', sans-serif; }
-  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-
-  <!-- Header -->
-  <header class="bg-white shadow sticky top-0 z-10">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between">
-      <div class="flex items-center mb-4 sm:mb-0">
-        <img src="https://placehold.co/50x50/0A2540/FFFFFF?text= وزارة" alt="شعار الوزارة" class="h-12 w-12 ml-3" />
-        <h1 class="text-xl md:text-2xl font-bold text-indigo-600">الموقع الدراسي</h1>
+<body class="bg-gray-100 min-h-screen py-10 px-4">
+  <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">رفع ملف جديد</h2>
+    <form id="uploadForm">
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">الصف</label>
+        <input type="text" id="grade" class="w-full border border-gray-300 rounded px-3 py-2" readonly />
       </div>
-    </div>
-  </header>
-
-  <!-- Upload Form Page -->
-  <main class="max-w-md mx-auto px-4 py-12 bg-white rounded-lg shadow mt-10">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">رفع ملف لمادة</h2>
-
-    <form id="upload-form" class="space-y-4">
-      <input type="hidden" id="grade" />
-      <input type="hidden" id="subject" />
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">اسمك كمعلم</label>
-        <input type="text" id="teacher" required class="w-full p-3 border rounded-md border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="مثال: أ. أحمد محمد" />
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">المادة</label>
+        <input type="text" id="subject" class="w-full border border-gray-300 rounded px-3 py-2" readonly />
       </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">عنوان الملف</label>
-        <input type="text" id="file-name" required class="w-full p-3 border rounded-md border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="مثال: اختبار الوحدة الأولى.pdf" />
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">اسم المعلم</label>
+        <input type="text" id="teacher" class="w-full border border-gray-300 rounded px-3 py-2" required />
       </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">رابط الملف</label>
-        <input type="url" id="file-url" required class="w-full p-3 border rounded-md border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="مثال: https://drive.google.com/file/d/... " />
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">اسم الملف</label>
+        <input type="text" id="fileName" class="w-full border border-gray-300 rounded px-3 py-2" required />
       </div>
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">اختر القسم الفرعي</label>
-        <select id="file-section" required class="w-full p-3 border rounded-md border-gray-300 focus:ring-indigo-500 focus:border-indigo-500">
-          <option value="">اختر القسم</option>
-          <option value="الوحدة الأولى">الوحدة الأولى</option>
-          <option value="الاختبارات">الاختبارات</option>
-          <option value="التجارب العلمية">التجارب العلمية</option>
-          <option value="المراجعة النهائية">المراجعة النهائية</option>
-        </select>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-medium mb-2">رابط الملف (مثل Google Drive)</label>
+        <input type="url" id="fileUrl" class="w-full border border-gray-300 rounded px-3 py-2" required />
       </div>
-
-      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-md transition duration-200">
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition">
         رفع الملف
       </button>
     </form>
+  </div>
 
-    <div class="mt-6 text-center">
-      <a href="javascript:history.back()" class="text-indigo-600 hover:text-indigo-800">← العودة إلى المادة</a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-white shadow-inner mt-12 py-6 text-center text-sm text-gray-500">
-    &copy; 2025 الموقع الدراسي | جميع الحقوق محفوظة
-
-    <div class="mt-4 text-gray-700 text-sm">
-      <p>إعداد: نواف المقبالي</p>
-      <p>للتواصل: <a href="tel:+96898061051" class="text-indigo-600 hover:text-indigo-800">+968 98061051</a></p>
-      <p>
-        تابعني على:
-        <a href="https://www.instagram.com/tu.7ru/ " target="_blank" class="text-indigo-600 hover:text-indigo-800">@tu.7ru</a>
-      </p>
-    </div>
-  </footer>
-
-  <!-- JavaScript for Upload -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const grade = urlParams.get('grade') || '9';
@@ -88,35 +44,34 @@
     document.getElementById("grade").value = grade;
     document.getElementById("subject").value = subject;
 
-    document.getElementById("upload-form").addEventListener("submit", function(e) {
+    document.getElementById("uploadForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
       const teacher = document.getElementById("teacher").value.trim();
-      const fileName = document.getElementById("file-name").value.trim();
-      const fileUrl = document.getElementById("file-url").value.trim();
-      const fileSection = document.getElementById("file-section").value.trim();
+      const fileName = document.getElementById("fileName").value.trim();
+      const fileUrl = document.getElementById("fileUrl").value.trim();
 
-      if (!teacher || !fileName || !fileUrl || !fileSection) {
+      if (!teacher || !fileName || !fileUrl) {
         alert("يرجى ملء جميع الحقول");
         return;
       }
 
-      let uploadedFiles = JSON.parse(localStorage.getItem("uploadedFiles")) || [];
-      uploadedFiles.push({
+      const newFile = {
         grade,
         subject,
-        section: fileSection,
         teacher,
         name: fileName,
         url: fileUrl,
         date: new Date().toLocaleDateString()
-      });
+      };
 
-      localStorage.setItem("uploadedFiles", JSON.stringify(uploadedFiles));
-      localStorage.setItem("newFileAlert", `📁 تم رفع ملف جديد: "${fileName}" - ${fileSection} للصف ${grade} بواسطة ${teacher}`);
+      // جلب الملفات الحالية
+      let files = JSON.parse(localStorage.getItem("uploadedFiles")) || [];
+      files.push(newFile);
+      localStorage.setItem("uploadedFiles", JSON.stringify(files));
 
       alert("تم رفع الملف بنجاح!");
-      window.history.back();
+      window.history.back(); // العودة إلى صفحة المادة
     });
   </script>
 </body>
